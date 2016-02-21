@@ -15,7 +15,15 @@ import dagger.Component;
  */
 public class MyApp extends Application {
 
-    public AppComponent mAppComponent;
+    private AppComponent mAppComponent;
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
+    }
+
+    public void setAppComponent(AppComponent appComponent) {
+        this.mAppComponent = appComponent;
+    }
 
     @Singleton
     @Component(modules = {NetworkModule.class, AppModule.class})
@@ -28,12 +36,12 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (mAppComponent == null) {
-            mAppComponent = DaggerMyApp_AppComponent.builder()
+        if (getAppComponent() == null) {
+            setAppComponent(DaggerMyApp_AppComponent.builder()
                     .appModule(new AppModule(this))
-                    .build();
+                    .build());
         }
 
-        Picasso.setSingletonInstance(mAppComponent.getPicasso());
+        Picasso.setSingletonInstance(getAppComponent().getPicasso());
     }
 }

@@ -46,7 +46,7 @@ public class MainActivityTest {
                 .appModule(new AppModule(app))
                 .build();
         testComponent.inject(this);
-        app.mAppComponent = testComponent;
+        app.setAppComponent(testComponent);
     }
 
     @Rule

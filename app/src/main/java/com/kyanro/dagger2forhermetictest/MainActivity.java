@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        ((MyApp) getApplication()).mAppComponent.inject(this);
+        ((MyApp) getApplication()).getAppComponent().inject(this);
 
         mGithubClient.getUser("kanro")
                 .subscribeOn(Schedulers.io())
